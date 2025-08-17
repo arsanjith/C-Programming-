@@ -1,67 +1,43 @@
-#include<stdio.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
 
-#include<stdlib.h>
+void main() {
+    FILE *f;
+    char ch;
+    int characters = 0, words = 0, lines = 0;
+    int in_word = 0;
 
-void main()
+    clrscr();
 
-{
+    f = fopen("sample.txt", "r");
 
-FILE *f;
+    if (f == NULL) {
+        printf("\nUnable to open file");
+        getch();
+        exit(0);
+    }
 
-char ch;
+    while ((ch = fgetc(f)) != EOF) {
+        characters++;
 
-int characters, words, lines;
+        if (ch == '\n') {
+            lines++;
+        }
 
-clrscr();
+        if (ch == ' ' || ch == '\t' || ch == '\n') {
+            in_word = 0;
+        } else if (in_word == 0) {
+            in_word = 1;
+            words++;
+        }
+    }
 
-f=fopen("sample.txt","r");
+    fclose(f);
 
-if(f=NULL)
+    printf("\nNumber of characters = %d", characters);
+    printf("\nNumber of words = %d", words);
+    printf("\nNumber of lines = %d", lines);
 
-{
-
-printf("\nUnable to open file");
-
-exit(EXIT_FAILURE);
-
-}
-
-characters words=lines=0;
-
-while((ch=fgetc(f))!=EOF)
-
-{
-
-characters++;
-
-if(ch='\n'||ch='\0')
-
-lines++;
-
-if(ch' '||ch='\t'||ch='\n'||ch='\0')
-
-words++;
-
-}
-
-if(characters>0)
-
-{
-
-words++;
-
-lines++;
-
-}
-
-printf("\nNumber of characters=%d",characters);
-
-printf("\nNumber of words=%d", words);
-
-printf("\nNumber of lines=%d", lines);
-
-fclose(f);
-
-getch();
-
+    getch();
 }
