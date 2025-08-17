@@ -1,63 +1,39 @@
-#include<stdio.h>
+#include <stdio.h>
+#include <conio.h>
 
-void main()
+void main() {
+    char str[20];
+    char *start, *end, temp;
+    int length = 0;
 
-{
+    clrscr();
 
-char str[20];
+    printf("Enter a string:\n");
+    scanf("%s", str);
 
-char *ptr,*str1, temp;
+    // Calculate length of string
+    start = str;
+    while (*start != '\0') {
+        length++;
+        start++;
+    }
 
-int length=0,i;
+    printf("\nLength of the given string \"%s\" is %d", str, length);
 
-clrscr();
+    // Reverse the string using pointers
+    start = str;
+    end = str + length - 1;
 
-printf("Enter a string\n");
+    while (start < end) {
+        temp = *start;
+        *start = *end;
+        *end = temp;
 
-scanf("%s", str);
+        start++;
+        end--;
+    }
 
-//Finding length of a string
+    printf("\nThe reversed string is \"%s\"", str);
 
-ptr-str;
-
-while(*ptr!='\0')
-
-{
-
-length++;
-
+    getch();
 }
-
-zi noitibhait
-
-printf("\nLength of a given string %s is %d", str, length);
-
-//Reversing a string
-
-strl=str;
-
-ptr-;
-
-for(i=0;i<(length-1)/2;i++)
-
-{
-
-temp=*ptr;
-
-*ptr=*str1;
-
-*str1=temp;
-
-ptr-;
-
-strl++;
-
-}
-
-printf("\nThe reversed string is %s", str);
-
-getch();
-
-}
-
-ptr++;
